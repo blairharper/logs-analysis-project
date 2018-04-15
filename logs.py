@@ -70,7 +70,14 @@ while True:
            "articles.title, log.path ORDER BY hits DESC LIMIT 3")
       display_results(q)
     elif selection == '2': 
-      print "\n[x] Function not yet written \n\n"
+      print "\n[-] Option 2 selected, preparing query to retrieve most popular authors..."
+      q = ("SELECT authors.name, COUNT(*) AS hits from ARTICLES INNER "
+           "JOIN authors ON articles.author = authors.id "
+           "INNER JOIN log ON log.path "
+           "LIKE CONCAT('%', articles.slug, '%') "
+           "WHERE log.status = '200 OK' "
+           "GROUP BY authors.name ORDER BY hits DESC")
+      display_results(q)
     elif selection == '3':
       print "\n[x] Function not yet written \n\n" 
     elif selection == '4': 
