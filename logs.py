@@ -21,7 +21,7 @@ def db_connect():
         c = db.cursor()
         print ("[x] Connected.")
         return db, c
-    except:
+    except (Exception, psycopg2.DatabaseError) as error:
         print ("[x] Connection to database failed. Exiting...")
 
 
@@ -41,17 +41,28 @@ def db_query(query):
 
 # Function to loop through results of db query and display in a list
 # This function also passes the query to the db_query function for execution
-def display_results(query):
+def display_results(query, selection):
     query_results = db_query(query)
     print "[-] Displaying results..."
-    for c, results in enumerate(query_results):
-        print (c+1, results[0], results[1])
+    if (selection == '1') or (selection == '2'):
+        for c, results in enumerate(query_results):
+            views = (str(results[1]))
+            views = views[:-1] + " views"
+            c = str(c+1) + ". "
+            print (c + results[0] + " - " + views)
+    if selection == '3':
+        for c, results in enumerate(query_results):
+            errors = (str(results[1]))
+            errors = errors[:-1] + "% error rate."
+            c = str(c+1) + ". "
+            print (c + "On " + results[0] + " there was " + errors)
+
 
 # Create menu and wait for user input
 menu = {}
 menu['1'] = "Display top 3 most popular articles."
 menu['2'] = "Display most popular authors."
-menu['3'] = "Display days with a number of errors."
+menu['3'] = "Display days with a high number of errors."
 menu['4'] = "Exit"
 while True:
     options = menu.keys()
@@ -70,7 +81,7 @@ while True:
              "LIKE CONCAT('%', articles.slug, '%') "
              "WHERE log.status = '200 OK' GROUP BY "
              "articles.title, log.path ORDER BY hits DESC LIMIT 3")
-        display_results(q)
+        display_results(q, selection)
 # If user selects second option then prepare DB query to retrieve
 # most popular authors and pass to display_results
     elif selection == '2':
@@ -81,7 +92,7 @@ while True:
              "LIKE CONCAT('%', articles.slug, '%') "
              "WHERE log.status = '200 OK' "
              "GROUP BY authors.name ORDER BY hits DESC")
-        display_results(q)
+        display_results(q, selection)
 # If user selects third option then prepare DB query to retrieve
 # days with high errors and pass to display_results
     elif selection == '3':
@@ -94,7 +105,7 @@ while True:
              "AS day, COUNT(*) AS requests FROM log WHERE status LIKE '%404%' "
              "GROUP BY day) AS log_percentage GROUP BY day  "
              "ORDER BY perc DESC) as final_query WHERE perc >= 1")
-        display_results(q)
+        display_results(q, selection)
 # If user selects fourth option then exit
     elif selection == '4':
         print "\n[-] Closing.... \n\n"
