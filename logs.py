@@ -14,14 +14,14 @@ print '##################################'
 print '\n\n'
 
 def db_connect():
-    try:
-        print ("[-] Connecting to database...")
-        db = psycopg2.connect(database = "news")
-        c = db.cursor()
-        print ("[x] Connected.")
-        return db, c
-    except:
-        print ("[x] Connection to database failed. Exiting...")
+  try:
+      print ("[-] Connecting to database...")
+      db = psycopg2.connect(database = "news")
+      c = db.cursor()
+      print ("[x] Connected.")
+      return db, c
+  except:
+      print ("[x] Connection to database failed. Exiting...")
         
 def db_query(query):
     db, c = db_connect()
