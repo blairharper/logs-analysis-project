@@ -1,0 +1,51 @@
+Sample output
+
+Please Select: 1
+
+[-] 1. Retrieving top 3 most popular articles...
+[-] Connecting to database...
+[x] Connected.
+[-] Sending query...
+[x] Query complete.
+[x] Databse connection closed.
+[-] Displaying results...
+1. Candidate is jerk, alleges rival - 33864 views
+2. Bears love berries, alleges bear - 25380 views
+3. Bad things gone, say good people - 17009 views
+
+Menu:
+1 Display top 3 most popular articles.
+2 Display most popular authors.
+3 Display days with a high number of errors.
+4 Exit
+
+Please Select: 2
+
+[-] 2. Retrieving most popular authors...
+[-] Connecting to database...
+[x] Connected.
+[-] Sending query...
+[x] Query complete.
+[x] Databse connection closed.
+[-] Displaying results...
+1. Ursula La Multa - 50759 views
+2. Rudolf von Treppenwitz - 42345 views
+3. Anonymous Contributor - 17009 views
+4. Markoff Chaney - 8455 views
+
+Menu:
+1 Display top 3 most popular articles.
+2 Display most popular authors.
+3 Display days with a high number of errors.
+4 Exit
+
+Please Select: 3
+
+[-] 3. listing bad error days...
+[-] Connecting to database...
+[x] Connected.
+[-] Sending query...
+[x] Query complete.
+[x] Databse connection closed.
+[-] Displaying results...
+1. On 2016-07-17 there was 2.2% error rate
