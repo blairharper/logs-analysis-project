@@ -108,7 +108,7 @@ while True:
 # If user selects third option then prepare DB query to retrieve
 # days with high errors and pass to display_results
     elif selection == '3':
-      print "Invalid selection."         print "\n[-] 3. listing bad error days..."
+        print "\n[-] 3. listing bad error days..."
         q = ("SELECT day, perc FROM ("
              "SELECT day, ROUND((SUM(requests)/(SELECT COUNT(*) "
              "FROM log WHERE "
