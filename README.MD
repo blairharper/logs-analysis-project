@@ -21,7 +21,7 @@ https://wiki.postgresql.org/wiki/PostgreSQL_For_Development_With_Vagrant
 Create a fork of the repository or manually save local copies of the code available at:
 
 ```
-https://github.com/blairly/udacity-logs-analysis-project
+https://github.com/blairly/logs-analysis-project
 ```
 
 To create a fork using Github:
